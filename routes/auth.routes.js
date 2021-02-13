@@ -20,7 +20,7 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array(),
-          message: 'Проверьте введенные данные'
+          message: 'Некорректные данные при регистрации'
         });
       }
 
@@ -78,7 +78,7 @@ router.post(
       const token = jwt.sign(
         { userId: user.id },
         config.get('jwtSecret'),
-        { expireIn: '1h' }
+        { expiresIn: '1h' }
       );
 
       res.json({ token, userId: user.id });
